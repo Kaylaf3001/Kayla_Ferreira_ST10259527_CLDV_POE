@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        background-image: url('https://media.licdn.com/dms/image/D5612AQHbW-hqHrW6Bg/article-cover_image-shrink_720_1280/0/1683280605300?e=2147483647&v=beta&t=vYHKJgTWSrIiTduyUvm5ALbjvlkJSfqpp6aZQtFnqP4');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+
+    p.thick {
+        font-weight: bold;
+    }
+
+    h1.thick,
+    h2.thick {
+        font-family: "Times New Roman", Times, serif;
+        margin-top: 0;
+        color: #e6e1e1;
+    }
+
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+        .my-work-button{
+        background-color: rgba(245, 236, 220, 0.4);
+        border: none;
+        color: white;
+        padding: 10px 60px; /* Larger padding to increase button size */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin-top: 10px; /* Added margin to separate button from text */
+        cursor: pointer;
+        border-radius: 5px; /* Rounded corners */
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(117, 116, 114, 0.2);
+        padding: 25px;
+        text-align: center;
+        color: black;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="thick">KhumaloCraft Emporium</h1>
+            <p>
+                Embrace the wild charm of South Africa with our whimsical pottery,
+                each piece a playful tribute to the vibrant landscapes and rich cultures of the region.
+            </p>
+            <button class="my-work-button" onclick="location.href='https://localhost:7277/Home/MyWork';">My Work</button> <!-- Button -->
+        </div>
+    </div>
+</body>
