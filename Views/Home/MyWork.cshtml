@@ -1,63 +1,101 @@
 ﻿@{
     ViewData["Title"] = "MyWork";
 }
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link href="~/Content/YourStyleSheet.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/564x/b3/05/e8/b305e81873a7adc7912f24badca9dff3.jpg');
+            
+            
+        }
 
- body {
-        background-color: #bdb39b
- }
+        p.thick {
+            font-weight: bold;
+        }
 
-p.thick {
-        font-weight: bold;
-    }
+        h1.thick {
+            font-family: 'Blackadder ITC', cursive;
+            margin-top: 0;
+            font-size: 36px;
+        }
 
-    h1.thick {
-        font-family: "Times New Roman", Times, serif;
-        margin-top: 0;      
-    }
-    .text-center {
-        text-align: center;
-    }
+        .text-center {
+            text-align: center;
+        }
 
-    img {
-        float: left;
-        margin-right: 20px;
-    }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
 
-    p {
-        overflow: hidden;
-    }
+        .column {
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+        }
 
-    #image {
-        position: absolute;
-        left: 50px;
-        top: 50px;
-    }
+        .column img {
+            margin-top: 8px;
+            vertical-align: middle;
+            width: 100%;
+        }
 
-    #text {
-        position: absolute;
-        left: 100px;
-        top: 100px;
-    }
-
-</style> 
+    </style>
+</head>
+<body>
 
 <div class="text-center">
-    <h1 class="thick">My Work</h1>  
+    <h1 class="thick">My Work</h1>
 </div>
 
-<aside>
-<img src="https://i.pinimg.com/736x/01/7b/db/017bdb02c53c37bdcfae9b7a221124c3.jpg"
-height="250"
-weight = "200"
-border-radius: 5px;
-/>
-</aside>
+<div class="row">
+    <div class="column">
+        <img src="https://i.pinimg.com/736x/01/7b/db/017bdb02c53c37bdcfae9b7a221124c3.jpg">
+        <img src="https://i.pinimg.com/564x/0b/ab/0c/0bab0ce137af101ed522c03f34196735.jpg">
+        <img src="https://i.pinimg.com/564x/da/f3/81/daf3815d21a2937db6ef7ee735ea61d2.jpg">
+        <img src="https://i.pinimg.com/564x/e2/9d/a3/e29da34eb51293a9cb20e7405f7e0b63.jpg">
+        <img src="https://needful-things.co.za/wp-content/uploads/2022/11/IMG_20220912_141000-1.jpg">
+        <img src="https://i.pinimg.com/736x/d0/fc/b3/d0fcb3dd8c2d151a80f4abfd64b0a443.jpg">
+        <img src="https://i.etsystatic.com/33815985/r/il/c1d897/5812846907/il_fullxfull.5812846907_o8rn.jpg">
+    </div>
+    <div class="column">
+        <img src="https://ceramicssa.co.za/wp-content/uploads/ultimatemember/6/file_9c6b6387_c848b05ed64c3b2d7d9a6781683dae33f2a1d2c0.jpeg">
+        <img src="https://needful-things.co.za/wp-content/uploads/2022/11/IMG_20220912_140709.jpg">
+        <img src="https://www.dailymaverick.co.za/wp-content/uploads/SMN371DEC19R.jpg">
+        <img src="https://moksi-s3.s3.af-south-1.amazonaws.com/wp-content/uploads/20240210200441/round-one.-scaled-2-600x600.webp">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1Yw3IWAzaEzX1_wDBeSp64UlKHNahh4RK54bgh5w68a7QoutBJkyJzCP1QjVjZdDJiA&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxK1UdBqggXstFDrJl_lip5JHQrvCb9HBODZf4zth1WIvPgwSvZ73ACXka3aJZ-gQwsQM&usqp=CAU">
+    </div>
+    <div class="column">
+        <img src="https://www.iconicedinburgh.co.uk/cdn/shop/products/IMG_0527_1024x1024@2x.jpg?v=1599946997">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHw8iHaqLpIfqiKFNOH7yMG9gAszG1LxgExw&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8rKTbwU6xF9w8KgeoP2BOK3UQb1qubzeP9pxuuoageBOyWxJSi-jnBIISzJuBkBqH_P0&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZOkQr8RqsKO-Edt5G7YWGCHQtVGPcm8NQrg&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpO45FQXzsqrbnBZ7XK9kJbVKuLUEmNWxPFQ&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtS6JXydwThVrkTczwefN_gcgIOQMk-kAs6A&usqp=CAU">
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyML6KvsrAfUPr2FWh34NSVQu31hyo7SwEUHfdymq5FFm8hrfQtwyVOtxLy34zGRgeR20&usqp=CAU">
+    </div>
+    <div class="column">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7yJD1rxfz0IYBz29twK8qmOJUxU14RCTZjWJlE5rGbAvLXc2OALtrDzqgQYQYW6zufy8&usqp=CAU">
+            <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/b1da11cf546550eaae8378629eb331aa.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx8Gt2DJk4Dsl-72kQiAbvMBXOIvSTnUDD2VjFyUb7n2RaVislwwVvJsvxLnG2B2i7XB0&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO6Co0wmbFWM6xyvegfgUwaNbdKI4I9UJBTw&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP5jiiRcvpotXZxzB0WhyAx5g5kzOa3hCEkh8Tt1xNX4F66Cew0JUrAZaktOGMtdnD0zs&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrbVAhlXtj6P2pRBVZSpdV8XwPDZ-4noFZMA&usqp=CAU">
+    </div>
+</div>
 
-<article>
-    <p>
-        Glazed with Mayco Frost Blue over Green Tea. Inside is Green Tea only. Clay body is Sibelco WMS 2002GG.
-    </p>
-</article>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+</body>
+</html>
