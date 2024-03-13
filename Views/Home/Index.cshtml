@@ -3,10 +3,11 @@
 }
 <style>
     body {
-        background-image: url('https://media.licdn.com/dms/image/D5612AQHbW-hqHrW6Bg/article-cover_image-shrink_720_1280/0/1683280605300?e=2147483647&v=beta&t=vYHKJgTWSrIiTduyUvm5ALbjvlkJSfqpp6aZQtFnqP4');
+        background-image: url('https://qcexclusive.com/wp-content/uploads/2024/01/BlankCeramicsHighRes2-10.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+
         
         margin: 0;
         padding: 0;
@@ -15,17 +16,18 @@
 
     p.thick {
         font-family: "Times New Roman", Times, serif;
-        font-weight: bold;
+        text-align: center;
         margin-top: 0;
         font-size: 15px
     }
 
     h1.thick,
     h2.thick {
-        font-family: 'Gigi', cursive;
+        font-family: "Times New Roman", Times, serif;
         font-weight: bold;
         margin-top: 0;
         color: #e6e1e1;
+        text-align: center;
     }
 
     .container {
@@ -40,7 +42,7 @@
     }
 
         .my-work-button{
-        background-color: rgba(245, 236, 220, 0.4);
+        background-color: rgba(69, 53, 38, 0.4);
         border: none;
         color: white;
         padding: 10px 60px; /* Larger padding to increase button size */
@@ -50,7 +52,7 @@
         font-size: 20px;
         margin-top: 10px; /* Added margin to separate button from text */
         cursor: pointer;
-        border-radius: 5px; /* Rounded corners */
+        border-radius: 50px; /* Rounded corners */
         font-family: "Times New Roman", Times, serif;
     }
 
@@ -61,13 +63,21 @@
         background-color: rgba(117, 116, 114, 0.2);
         padding: 25px;
         text-align: center;
-        color: black;
+        color: white;
+    }
+
+    .column {
+        flex: 40%;
+        max-width: 40%;
+        padding: 0 4px;
     }
 
 </style>
 
 <body>
+   
     <div class="container">
+        <div class="column">
         <div class="text-center">
             <h1 class="thick">KhumaloCraft Emporium</h1>
             <p class="thick">
@@ -76,5 +86,6 @@
             </p>
             <button class="my-work-button" onclick="location.href='https://localhost:7277/Home/MyWork';">My Work</button> <!-- Button -->
         </div>
+    </div>
     </div>
 </body>

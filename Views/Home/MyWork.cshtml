@@ -10,9 +10,9 @@
     <link href="~/Content/YourStyleSheet.css" rel="stylesheet" />
     <style>
         body {
-            background-image: url('https://i.pinimg.com/564x/b3/05/e8/b305e81873a7adc7912f24badca9dff3.jpg');
-            
-            
+            background-image: url('');
+            background-image: cover
+            background-repeat: no-repeat;
         }
 
         p.thick {
@@ -22,8 +22,23 @@
         h1.thick {
             font-family: 'Blackadder ITC', cursive;
             margin-top: 0;
-            font-size: 36px;
+            font-size: 50px;
+            color: white; /* Text color */
+            position: relative; /* To make z-index work */
+            padding: 10px 20px; /* Adjust padding as needed */
+            z-index: 1; /* Ensure text is above background */
         }
+
+            h1.thick:before {
+                content: ''; /* Create the background element */
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+                position: absolute; /* Position it behind the text */
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1; /* Put it behind the text */
+            }
 
         .text-center {
             text-align: center;

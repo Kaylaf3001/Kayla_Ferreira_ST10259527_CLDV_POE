@@ -1,22 +1,83 @@
 ﻿@{
     ViewData["Title"] = "ContactUs";
 }
-<style>
-    p.thick {
-        font-weight: bold;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link href="~/Content/YourStyleSheet.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('');
+            background-image: cover;
 
-    h1.thick,
-    h2.thick {
-        font-family: "Times New Roman", Times, serif;
-        margin-top: 0;
-    }
-</style>
-<div class="text-center">
-    <h1 class="thick">Contact Details</h1>
-    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QjY3G7M/C.png" alt="C" border="0"></a>
-        <p>Email: KhumaloCraftEmp@gmail.com</p>
-        <p>Cell Number: 082 134 5678</p>
-        <p>WhatsApp: 083 123 456 7890</p>
-    
-</div>
+        }
+
+        p.thick {
+            font-weight: bold;
+        }
+
+        h1.thick {
+            font-family: 'Blackadder ITC', cursive;
+            margin-top: 0;
+            font-size: 50px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+
+        .column {
+            flex: 50%;
+            max-width: 50%;
+            padding: 0 4px;
+        }
+
+            .column img {
+                margin-top: 8px;
+                vertical-align: middle;
+                width: 100%;
+            }
+
+    </style>
+</head>
+<body>
+
+    <div class="text-center">
+        <h1 class="thick">ContactUs</h1>
+    </div>
+        <div class="column">
+            <div class="image">
+                <figure>
+                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QjY3G7M/C.png" alt="C"></a>
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="column">
+            <div class="text">
+                <h2>Email:</h2>
+                <p><a href="mailto:KhumaloCraftEmp@gmail.com">KhumaloCraftEmp@gmail.com</a></p>
+                <h2>Cell Number:</h2>
+                <p>082 134 5678</p>
+                <h2>WhatsApp:</h2>
+                <p>083 123 456 7890</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
