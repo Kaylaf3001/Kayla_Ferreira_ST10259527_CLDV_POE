@@ -8,76 +8,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"]</title>
     <link href="~/Content/YourStyleSheet.css" rel="stylesheet" />
-    <style>
-        body {
-            background-image: url('');
-            background-image: cover;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-left">
+            <h1>Contact Us</h1>
+            
+        </div>
+        <div class="contact-right">
+            <h2>Contact Details</h2>
+            <ul>
+                <li><strong>Email:</strong> <p><a href="mailto:KhumaloCraftEmp@gmail.com">KhumaloCraftEmp@gmail.com</a></p>
+                <li><strong>Phone:</strong> 123-456-7890</li>
+                <li><strong>Address:</strong> 1234 ABBA building, Cape Town, South Africa</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
 
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://adult.activatelearning.ac.uk/app/uploads/2022/03/artisans-working-with-ceramics-2021-09-24-03-59-47-utc-scaled.jpg'); /* Replace with your image URL */
+        background-size: cover;
+    }
+
+    .contact-container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .contact-left {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        
+        
+    }
+
+        .contact-left h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
-        p.thick {
-            font-weight: bold;
+    .contact-right {
+        flex: 1;
+        background-color: rgba(40, 41, 41,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color:white;
+    }
+
+        .contact-right h2 {
+            margin-bottom: 40px;
         }
 
-        h1.thick {
-            font-family: 'Blackadder ITC', cursive;
-            margin-top: 0;
-            font-size: 50px;
-        }
-
-        .text-center {
+        .contact-right ul {
+            list-style: none;
+            padding: 0;
             text-align: center;
         }
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0 4px;
-        }
-
-        .column {
-            flex: 50%;
-            max-width: 50%;
-            padding: 0 4px;
-        }
-
-            .column img {
-                margin-top: 8px;
-                vertical-align: middle;
-                width: 100%;
+            .contact-right ul li {
+                margin-bottom: 10px;
             }
 
-    </style>
-</head>
-<body>
+                .contact-right ul li strong {
+                    margin-right: 5px;
+                }
 
-    <div class="text-center">
-        <h1 class="thick">ContactUs</h1>
-    </div>
-        <div class="column">
-            <div class="image">
-                <figure>
-                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QjY3G7M/C.png" alt="C"></a>
-                    <figcaption></figcaption>
-                </figure>
-            </div>
-        </div>
-        <div class="column">
-            <div class="text">
-                <h2>Email:</h2>
-                <p><a href="mailto:KhumaloCraftEmp@gmail.com">KhumaloCraftEmp@gmail.com</a></p>
-                <h2>Cell Number:</h2>
-                <p>082 134 5678</p>
-                <h2>WhatsApp:</h2>
-                <p>083 123 456 7890</p>
-            </div>
-        </div>
-    </div>
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(117, 116, 114, 0.2);
+        padding: 5px; /* Reduced padding */
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+    }
+</style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-</body>
-</html>

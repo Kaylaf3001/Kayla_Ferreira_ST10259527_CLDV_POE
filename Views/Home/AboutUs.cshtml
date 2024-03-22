@@ -1,19 +1,115 @@
-﻿@{
-    ViewData["Title"] = "AboutUs";
-}
-<style>
-p.thick {
-        font-weight: bold;
-    }
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            /* font-family: "Times New Roman", Times, serif; */
+            background-image: url('https://m.atostogoskaime.lt/data/gallery/large/puodininkyste_7_.jpg');
+            background-size: cover;
+            background-position: center;
 
-    h1.thick,
-    h2.thick {
-        font-family: "Times New Roman", Times, serif;
-        margin-top: 0;
-        
-    }
-</style>
-<div class="text-right">
-    <h1 class="thick">About us</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        }
+
+        .content-block {
+            background-color: rgba(59, 60, 61, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 30px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+            .content-block h2 {
+                text-align: center;
+                font-weight: bold;
+                color: white;
+            }
+
+            .content-block p {
+                text-align: justify;
+                color: white;
+            }
+
+        .employees-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .employee {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+            .employee img {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                box-shadow: 0 0 10px rgba(71, 77, 87, 0.9);
+                filter: grayscale(100%);
+            }
+
+            .employee p {
+                margin-top: 10px;
+            }
+
+        .meet-team-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 40px;
+            color: white;    
+        }
+
+        .footer {
+            background-color: rgba(23, 23, 23, 0.2);
+            text-align: center;
+            color: white;
+        }
+
+        h2 {
+            font-weight: bold;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="meet-team-container">
+        <h2>Meet The Team</h2>
+        <section class="employees-section">
+            <div class="employee">
+                <img src="https://stellenbosch.thepottery.co.za/wp-content/uploads/2023/11/Pottery-Stellenbosch-Wonki-Ware-Gallery-1.jpg" alt="Employee 1">
+                <p>Mandy Mini<br>Clay Maker</p>
+            </div>
+            <div class="employee">
+                <img src="https://stellenbosch.thepottery.co.za/wp-content/uploads/2023/11/Pottery-Stellenbosch-Wonki-Ware-Gallery-5.jpg" alt="Employee 2">
+                <p>Jane Smith<br>Head Potter</p>
+            </div>
+            <div class="employee">
+                <img src="https://images.squarespace-cdn.com/content/v1/625d56ba29252c11b04422e6/1667817269613-DMH05TWVEJAZ7R75V9BK/l6c8RN0b-hw8C8VmWVKUvuuXRucMo_SXuCqzsEUDw7EB6rRKoIxlwbhn32-lLzojaFHmbVtI.jpg" alt="Employee 3">
+                <p>James Khumalo<br>CEO</p>
+            </div>
+            <div class="employee">
+                <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_800,h_800/https://anthonyshapiro.co.za/wp-content/uploads/2022/06/Anthony-Shapiro-Ceramics-Studio-Cape-Town-IMG_1113-800x800.jpg" alt="Employee 4">
+                <p>Jess May<br>Pottery Specialist</p>
+            </div>
+            <div class="employee">
+                <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_800,h_800/https://anthonyshapiro.co.za/wp-content/uploads/2022/06/Anthony-Shapiro-Ceramics-Studio-Cape-Town-IMG_3790-800x800.jpg" alt="Employee 5">
+                <p>Luke Hanson<br>Sculpture</p>
+            </div>
+        </section>
+    </div>
+
+    <section class="about-section">
+        <div class="content-block">
+            <h2>About Us</h2>
+            <p>James Khumalo is a visionary entrepreneur who has a business in making ceramic and pottery pieces. Based in South Africa, James is deeply rooted in his heritage and culture, and he infuses his work with elements that reflect his roots.</p>
+            <p>With a passion for craftsmanship and a keen eye for design, James strives to create unique and beautiful pottery pieces that showcase the beauty of his homeland. Each piece is carefully crafted with attention to detail, ensuring that every creation tells a story and connects with its audience on a deeper level.</p>
+            <p>At Khumalo Craft, we are dedicated to preserving and celebrating the rich tradition of pottery making while infusing it with a modern twist. We invite you to explore our collection and experience the beauty and craftsmanship of our pottery pieces.</p>
+            <p>We want to extend our heartfelt thanks to all who continue to support Khumalo Craft. Your encouragement and patronage allow us to pursue our passion for pottery making and share our art with the world. By choosing to buy our products, you not only support local craftsmanship but also become part of our journey to preserve and promote our cultural heritage. Together, let's celebrate the beauty of handmade pottery and the stories it tells.</p>
+        </div>
+    </section>
+</body>
+</html>
