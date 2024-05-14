@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body, html {
-            background-image: url("/Images/BackGround/BackImg2.png");
+           
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -64,6 +64,43 @@
             width: 100%;
             font-size: 18px;
         }
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
 
             .card button:hover {
                 opacity: 0.7;
@@ -91,24 +128,43 @@
             <h1>Welcome User: @userID</h1>
         }
 
-    <div class="card-container">
-     @foreach (var product in products){
-        <form action="PlaceOrder" method="post">
-        <div class="card">
-        <img src="@product.ImageUrl" alt="@product.Name" style="width:100%">
-        <h2>@product.Name</h2>
-        <h2>@product.ProductID</h2>
-        <p class="price">@product.Price</p>
-        <p>@product.Description</p>
-            <div class="button">
-                 <input type="hidden" name="productID" value="@product.ProductID"/>
-                 <button type="submit">Place Order</button>
-            </div>
+        <div class="card-container">
+            @foreach (var product in products)
+            {
+                <form id="form@product.ProductID" action="PlaceOrder" method="post">
+                    <div class="card">
+                        <img src="@product.ImageUrl" alt="@product.Name" style="width:100%">
+                        <h2>@product.Name</h2>
+                        <h2>@product.ProductID</h2>
+                        <p class="price">@product.Price</p>
+                        <p>@product.Description</p>
+                        <div class="button">
+                            <input type="hidden" name="productID" value="@product.ProductID" />
+                            <button type="submit" class="place-order-btn">Place Order</button>
+                        </div>
+                    </div>
+                </form>
+            }
         </div>
-      </form>
-     }
-           
-     </div>  
 
+        
+        <script>
+            // Get all the buttons that submit the form
+            var btns = document.getElementsByClassName("place-order-btn");
+
+            // When the user clicks on any button, show a confirmation dialog
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].onclick = function (event) {
+                    // Show a confirmation dialog
+                    var confirmPurchase = confirm("Are you sure you want to place this order?");
+                    // If the user clicked Cancel, prevent the form from submitting
+                    if (!confirmPurchase) {
+                        event.preventDefault();
+                    }
+                }
+            }
+
+        </script>
+     
     </body>
 </html>

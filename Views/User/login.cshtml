@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewData["Title"] = "Login Page";
+    var loginResult = ViewData["loginResult"];
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -130,8 +132,7 @@
             <p style="text-align: center; font-weight: bold; font-size: 18px;">Invalid credentials. Please try again.</p>
         </div>
     </div>
-
-    <script>
+     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -153,18 +154,17 @@
         // Show the modal when login fails
         var loginForm = document.getElementById("login-form");
         loginForm.addEventListener("submit", function (event) {
-            var email = loginForm.elements["email"].value;
-            var password = loginForm.elements["password"].value;
+            var loginResult = @loginResult;
             // Check your credentials here
-            if (email === "email" && password === "password") {
+            if (loginResult == 2) {
                 // Successful login, do something
-            } else {
+            } else if (loginResult == 1) {
                 // Show modal for invalid credentials
                 modal.style.display = "block";
                 event.preventDefault(); // Prevent form submission only when login fails
             }
         });
-    </script>  
+    </script> 
 
 </body>
 </html>

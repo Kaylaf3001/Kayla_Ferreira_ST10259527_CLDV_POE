@@ -6,29 +6,26 @@
     <title>Add A Product</title>
     <style>
         body {
-            background-image: url("/Images/BackGround/BackImg2.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
 
-        .mainContainer {
-            margin-top: 20px;
-            max-width: 800px;
-            padding: 20px;
-            margin-bottom: 50px;
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
         }
 
-            .mainContainer h2 {
-                text-align: center;
-                margin-bottom: 20px;
-            }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
 
         form {
             display: flex;
@@ -36,55 +33,52 @@
             justify-content: space-between;
         }
 
-            form input[type="text"],
-            form select,
-            form textarea,
-            form input[type="file"] {
-                width: calc(50% - 10px);
-                padding: 10px;
- 
-                margin-bottom: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
+        input[type="text"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: calc(50% - 10px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+            input[type="text"]:focus,
+            select:focus,
+            textarea:focus,
+            input[type="file"]:focus {
+                border-color: #007bff;
             }
 
-            form input[type="submit"] {
-                width: 50%;
-                height: 50px;
-                padding: 10px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                transition: background-color 0.3s ease;
+        select {
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #0056b3;
             }
-
-            form .form-group {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-
-                form .form-group.image-preview {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 200px; /* Adjust this to change the height of the image preview container */
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    overflow: hidden;
-                }
-
-                    form .form-group.image-preview img {
-                        max-width: 100%;
-                        max-height: 100%;
-                    }
-
-                form input[type="submit"]:hover {
-                    background-color: #0056b3;
-                }
 
         .image-preview {
             text-align: center;
@@ -95,30 +89,30 @@
                 max-width: 100%;
                 max-height: 200px;
                 margin-top: 10px;
-                border: 1px solid #ccc;
+                border: 1px solid #ddd;
                 border-radius: 5px;
             }
 
-        .footer {
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(117, 116, 114, 0.1);
+            
             text-align: center;
             color: white;
-            height: 40px;
-           
         }
     </style>
 </head>
 <body>
 
-    <div class="mainContainer">
+    <div class="container">
         <h2>Add Product</h2>
         <form action="AddProduct" method="post" enctype="multipart/form-data" id="productForm">
-        <div class="form-group">
             <input type="text" name="Name" placeholder="Product Name" required>
-                <input type="text" name="Quantity" placeholder="Quantity" required>
-                <input type="text" name="Price" placeholder="Price" required>
-                <textarea name="Description" placeholder="Description" required></textarea>
-        </div>
-        <div class="form-group">
+            <input type="text" name="Quantity" placeholder="Quantity" required>
+            <input type="text" name="Price" placeholder="Price" required>
+            <textarea name="Description" placeholder="Description" required></textarea>
             <select name="category" required>
                 <option value="">Select a category</option>
                 <option value="ring">Ring</option>
@@ -127,24 +121,19 @@
                 <option value="bags">Bags</option>
                 <option value="necklace">Necklace</option>
             </select>
-        </div>
-           
-            <div class="form-group">
-                <input type="file" name="Image" required onchange="previewImage(event)">
-            </div>
-            <div class="form-group image-preview" id="imagePreview">
+            <input type="file" name="Image" required onchange="previewImage(event)">
+            <div class="image-preview" id="imagePreview">
                 <img id="previewImg" src="#" alt="Preview Image" style="display: none;">
             </div>
-            
             <input type="submit" value="Add Product">
         </form>
     </div>
     
- 
+
     <script>
         function previewImage(event) {
             var reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 var preview = document.getElementById('previewImg');
                 preview.style.display = 'block';
                 preview.src = reader.result;

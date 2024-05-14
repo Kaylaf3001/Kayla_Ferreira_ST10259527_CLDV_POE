@@ -30,13 +30,15 @@ namespace POE_CloudDev.Controllers
             int userID = loginModel.SelectUser(email, password);
             if (userID != -1)
             {
+                ViewData["LoginResult"] = 2;
                 HttpContext.Session.SetInt32("CurrentUserId", userID);
                 return RedirectToAction("MyWork", "Product", new { userID = userID });
             }
             else
             {
                 // User not found, handle accordingly (e.g., show error message)
-                return View("LoginFailed");
+                ViewData["LoginResult"] = 1;
+                return View();
                 
             }
         }
@@ -44,6 +46,7 @@ namespace POE_CloudDev.Controllers
         [HttpGet]
         public ActionResult login()
         {
+            ViewData["LoginResult"] = 0;
             return View(loginModel) ;
         }
         //-------------------------------------------------------------------------------------------------------------
