@@ -140,30 +140,37 @@
                         <p>@product.Description</p>
                         <div class="button">
                             <input type="hidden" name="productID" value="@product.ProductID" />
-                            <button type="submit" class="place-order-btn">Place Order</button>
+                            <button type="button" class="place-order-btn" data-product-id="@product.ProductID">Place Order</button>
                         </div>
                     </div>
                 </form>
             }
         </div>
 
-        
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+            // Get the modal and the confirm button
             // Get all the buttons that submit the form
             var btns = document.getElementsByClassName("place-order-btn");
 
             // When the user clicks on any button, show a confirmation dialog
             for (var i = 0; i < btns.length; i++) {
                 btns[i].onclick = function (event) {
+                    event.preventDefault(); // Prevent the form from submitting
                     // Show a confirmation dialog
-                    var confirmPurchase = confirm("Are you sure you want to place this order?");
-                    // If the user clicked Cancel, prevent the form from submitting
-                    if (!confirmPurchase) {
-                        event.preventDefault();
-                    }
+                    Swal.fire({
+                        title: 'Are you sure you want to place this order?',
+                        showDenyButton: true,
+                        confirmButtonText: `Yes`,
+                        denyButtonText: `No`,
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            this.form.submit(); // Submit the form
+                        }
+                    })
                 }
             }
-
         </script>
      
     </body>
