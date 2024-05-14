@@ -1,5 +1,7 @@
-﻿@model POE_CloudDev.Models.LoginModel
-
+﻿
+@{
+    ViewData["Title"] = "Login Page";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +10,22 @@
     <title>Login Page</title>
     <style>
         body {
- background-image: url('');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
+            background-image: url("/Images/BackGround/BackImg2.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
 
         .login-container {
             position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 300px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
             .login-container h2 {
@@ -53,6 +55,7 @@
 
         .signup-link {
             text-align: center;
+            margin-top: 20px;
         }
 
             .signup-link a {
@@ -60,24 +63,56 @@
                 text-decoration: none;
             }
 
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            display: none;
+        .footer {
+            background-color: rgba(23, 23, 23, 0.2);
+            text-align: center;
+            color: white;
         }
+
+        /* The Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%; /* Reduced width */
+            border-radius: 10px;
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
     </style>
 </head>
 <body>
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="login" method="post">
+        <form id="login-form" action="login" method="post">
             <input type="text" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" value="Login">
@@ -86,6 +121,50 @@
             <a asp-area="" asp-controller="User" asp-action="SignUp">Sign Up</a>
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p style="text-align: center; font-weight: bold; font-size: 18px;">Invalid credentials. Please try again.</p>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        // Show the modal when login fails
+        var loginForm = document.getElementById("login-form");
+        loginForm.addEventListener("submit", function (event) {
+            var email = loginForm.elements["email"].value;
+            var password = loginForm.elements["password"].value;
+            // Check your credentials here
+            if (email === "email" && password === "password") {
+                // Successful login, do something
+            } else {
+                // Show modal for invalid credentials
+                modal.style.display = "block";
+                event.preventDefault(); // Prevent form submission only when login fails
+            }
+        });
+    </script>  
 
 </body>
 </html>

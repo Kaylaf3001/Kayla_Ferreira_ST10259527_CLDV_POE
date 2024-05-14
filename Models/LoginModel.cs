@@ -5,9 +5,9 @@ namespace POE_CloudDev.Models
 {
     public class LoginModel
     {
+        //-------------------------------------------------------------------------------------------------------------
         public static string con_string = "Server=tcp:st10259527-server.database.windows.net,1433;Initial Catalog=st10259527-DB;Persist Security Info=False;User ID=Kaylaf97;Password=@Bran@16;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
-
+        //-------------------------------------------------------------------------------------------------------------
         public int SelectUser(string email, string password)
         {
             int userId = -1; // Default value if user is not found
@@ -36,6 +36,7 @@ namespace POE_CloudDev.Models
             }
             return userId;
         }
+        //-------------------------------------------------------------------------------------------------------------
 
     }
 }

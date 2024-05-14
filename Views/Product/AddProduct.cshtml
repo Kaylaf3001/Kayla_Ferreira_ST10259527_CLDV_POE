@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add A Product</title>
+    <style>
+        body {
+            background-image: url("/Images/BackGround/BackImg2.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .mainContainer {
+            margin-top: 20px;
+            max-width: 800px;
+            padding: 20px;
+            margin-bottom: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .mainContainer h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+            form input[type="text"],
+            form select,
+            form textarea,
+            form input[type="file"] {
+                width: calc(50% - 10px);
+                padding: 10px;
+ 
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            form input[type="submit"] {
+                width: 50%;
+                height: 50px;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+            form .form-group {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+                form .form-group.image-preview {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 200px; /* Adjust this to change the height of the image preview container */
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    overflow: hidden;
+                }
+
+                    form .form-group.image-preview img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+
+                form input[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
+
+        .image-preview {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .image-preview img {
+                max-width: 100%;
+                max-height: 200px;
+                margin-top: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+        .footer {
+            text-align: center;
+            color: white;
+            height: 40px;
+           
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mainContainer">
+        <h2>Add Product</h2>
+        <form action="AddProduct" method="post" enctype="multipart/form-data" id="productForm">
+        <div class="form-group">
+            <input type="text" name="Name" placeholder="Product Name" required>
+                <input type="text" name="Quantity" placeholder="Quantity" required>
+                <input type="text" name="Price" placeholder="Price" required>
+                <textarea name="Description" placeholder="Description" required></textarea>
+        </div>
+        <div class="form-group">
+            <select name="category" required>
+                <option value="">Select a category</option>
+                <option value="ring">Ring</option>
+                <option value="baskets">Baskets</option>
+                <option value="ceramics">Ceramics</option>
+                <option value="bags">Bags</option>
+                <option value="necklace">Necklace</option>
+            </select>
+        </div>
+           
+            <div class="form-group">
+                <input type="file" name="Image" required onchange="previewImage(event)">
+            </div>
+            <div class="form-group image-preview" id="imagePreview">
+                <img id="previewImg" src="#" alt="Preview Image" style="display: none;">
+            </div>
+            
+            <input type="submit" value="Add Product">
+        </form>
+    </div>
+    
+ 
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementById('previewImg');
+                preview.style.display = 'block';
+                preview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+</html>
