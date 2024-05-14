@@ -10,6 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* CSS Page*@
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
     <style>
         body, html {
            
@@ -64,30 +69,36 @@
             width: 100%;
             font-size: 18px;
         }
-        /* The Modal (background) */
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+       
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%; 
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
         }
-
-        /* Modal Content/Box */
+     
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 15% auto; 
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 80%;
         }
 
-        /* The Close Button */
         .close {
             color: #aaa;
             float: right;
@@ -110,17 +121,22 @@
             background-color: rgba(23, 23, 23,0.2);
             text-align: center;
             color: white;
-        }
-
-       
+        }      
     </style>
     </head>
+@* //------------------------------------------------------------------------------------------------------------- *@
+
+ @* //------------------------------------------------------------------------------------------------------------- *@
+ @* HTML - Creates the cards that have been either been entered by users or hard coded in from the database*@
+ @* //------------------------------------------------------------------------------------------------------------- *@
 <body>
 
     <nav>
         <!-- existing navigation links -->
         <a href="AddProduct">Sell</a>
     </nav>
+
+    @* Calling the userId*@
     <div class="container">
         <h1>My Shop</h1>
         @if (userID != null)
@@ -133,9 +149,8 @@
             {
                 <form id="form@product.ProductID" action="PlaceOrder" method="post">
                     <div class="card">
-                        <img src="@product.ImageUrl" alt="@product.Name" style="width:100%">
+                        <img class="product-image" src="@product.ImageUrl" alt="@product.Name">
                         <h2>@product.Name</h2>
-                        <h2>@product.ProductID</h2>
                         <p class="price">@product.Price</p>
                         <p>@product.Description</p>
                         <div class="button">
@@ -147,6 +162,9 @@
             }
         </div>
 
+        @* //------------------------------------------------------------------------------------------------------------- *@
+        @* Javascript - This is a pop up also known as a dialog box that will pop up  when place order is clicked*@
+        @* //------------------------------------------------------------------------------------------------------------- *@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             // Get the modal and the confirm button
@@ -172,6 +190,6 @@
                 }
             }
         </script>
-     
+        @* //------------------------------------------------------------------------------------------------------------- *@
     </body>
 </html>

@@ -9,6 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* CSS Page*@
+    @* //------------------------------------------------------------------------------------------------------------- *@
     <title>Login Page</title>
     <style>
         body {
@@ -71,30 +75,30 @@
             color: white;
         }
 
+        @* //------------------------------------------------------------------------------------------------------------- *@
         /* The Modal */
+        @* //------------------------------------------------------------------------------------------------------------- *@
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none; 
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
         }
-
-        /* Modal Content/Box */
+      
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 60%; /* Reduced width */
+            width: 60%;
             border-radius: 10px;
         }
-
-        /* Close Button */
+        
         .close {
             color: #aaa;
             float: right;
@@ -108,9 +112,16 @@
                 text-decoration: none;
                 cursor: pointer;
             }
+         @* //------------------------------------------------------------------------------------------------------------- *@
     </style>
+     @* //------------------------------------------------------------------------------------------------------------- *@
+
 </head>
 <body>
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* HTML - Allows users to enter credentials and along with the controller and model it will pass the required variables *@
+    @* //------------------------------------------------------------------------------------------------------------- *@
 
     <div class="login-container">
         <h2>Login</h2>
@@ -126,12 +137,16 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-        <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <p style="text-align: center; font-weight: bold; font-size: 18px;">Invalid credentials. Please try again.</p>
         </div>
     </div>
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* Javascript - calling a modal that pops up when the wrong credentials are entered*@
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
      <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -164,7 +179,8 @@
                 event.preventDefault(); // Prevent form submission only when login fails
             }
         });
-    </script> 
+    </script>
+    @* //------------------------------------------------------------------------------------------------------------- *@
 
 </body>
 </html>

@@ -11,9 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* CSS Page *@
+    @* //------------------------------------------------------------------------------------------------------------- *@
     <title>@ViewData["Title"]</title>
     <style>
-        /* Global Styles */
+        
         body {
             background-image: url("/Images/BackGround/ProfileBackGround.jpeg");
             font-family: Arial, sans-serif;
@@ -34,7 +38,6 @@
             margin-bottom: 30px;
         }
 
-        /* User Details */
         .user-details {
             background-color: #fff;
             padding: 20px;
@@ -53,7 +56,6 @@
                 font-size: 16px;
             }
 
-        /* Order History */
         .order-history {
             background-color: #fff;
             padding: 20px;
@@ -74,12 +76,12 @@
             margin-bottom: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex; /* Added */
+            display: flex; 
         }
 
         .product-image  {
-            width: 200px; /* Adjust this value to your desired width */
-            height: 200px; /* Adjust this value to your desired height */
+            width: 200px; 
+            height: 200px; 
             object-fit: cover;   
             border-radius: 8px;
             margin-right: 20px;
@@ -105,8 +107,14 @@
         }
 
     </style>
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
 </head>
 <body>
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* HTML Page *@
+    @* //------------------------------------------------------------------------------------------------------------- *@
     <div class="container">
         <h1><strong>Profile Page</strong></h1>
         
@@ -135,6 +143,8 @@
             }
         </div>
     </div>
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
 </body>
 </html>
 
