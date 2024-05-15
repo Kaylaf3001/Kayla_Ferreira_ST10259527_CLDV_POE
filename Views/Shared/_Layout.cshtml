@@ -19,6 +19,16 @@
             border-radius: 5px; 
         }
 
+        .navbar-nav.flex-grow-1.justify-content-end {
+            margin-left: auto;
+        }
+
+        .footer {
+            background-color: rgba(23, 23, 23,0.2);
+            text-align: center;
+            color: white;
+        }
+
 
     </style>
 </head>
@@ -49,6 +59,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Profile">Profile</a>
                         </li>
+
+                        <ul class="navbar-nav flex-grow-1 justify-content-end">
+                            @if (ViewContext.RouteData.Values["controller"].ToString() == "Product" && ViewContext.RouteData.Values["action"].ToString() == "MyWork")
+                            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="AddProduct">Sell</a>
+                </li>
+                            }
+    </ul>
                         
                     </ul>
                 </div>
