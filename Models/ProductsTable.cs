@@ -98,6 +98,7 @@ namespace POE_CloudDev.Models
                     product.Price = rdr["Price"].ToString();
                     product.Category = rdr["Category"].ToString();
                     product.Description = rdr["Description"].ToString();
+                    product.Quantity = Convert.ToInt32(rdr["Quantity"]);
                     product.Availability = Convert.ToBoolean(rdr["Availability"]);
                     product.ImageUrl = rdr["ImagePath"].ToString();
 

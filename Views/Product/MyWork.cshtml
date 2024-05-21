@@ -4,6 +4,8 @@
     ViewData["Title"] = "Home Page";
     var userID = ViewData["userID"];
     var products = ViewData["Products"] as List<POE_CloudDev.Models.ProductsTable>;
+    var categories = products.Select(p => p.Category).Distinct();
+
 }
 <html lang="en">
 <head>
@@ -26,11 +28,11 @@
             padding-bottom: 50px;
         }
 
-        h1, h2 {
+        h1 {
             text-align: center;
-            padding: 10px;
             font-weight: bold;
             color: black;
+            font-family: "Times New Roman", Times, serif;
 
         }
 
@@ -38,6 +40,8 @@
             text-align: center;
             color: black;
             font-size: 20px;
+            font-family: "Times New Roman", Times, serif;
+            padding: 10px;
         }
 
         .card-container {
@@ -126,7 +130,7 @@
         .footer {
             background-color: rgba(23, 23, 23,0.2);
             text-align: center;
-            color: white;
+            color: black;
         }  
         .listing-button-container {
             text-align: center; /* Center the button */
@@ -153,48 +157,47 @@
  @* HTML - Creates the cards that have been either been entered by users or hard coded in from the database*@
  @* //------------------------------------------------------------------------------------------------------------- *@
 <body>
-
-    <nav>
-        <!-- existing navigation links -->
-       
-    </nav>
-
-    @* Calling the userId*@
-    <div class="container">
-        <h1>My Shop</h1>
-        @if (userID != null)
-        {
-            <h1>Welcome User: @userID</h1>
-        }
-
-        <div class="card-container">
-            @foreach (var product in products)
+        <div class="container">
+            <h1>The Shop</h1>
+            <h2> A space to support local artists </h2>
+            @if (userID != null)
             {
-                <form id="form@product.ProductID" action="PlaceOrder" method="post">
+                <h1>Welcome User: @userID</h1>
+            }
+             @foreach (var category in categories)
+            {
+            <h2>@category</h2>
+            <div class="card-container">
+                @foreach (var product in products.Where(p => p.Category == category))
+                {
                     <div class="card">
                         <img class="product-image" src="@product.ImageUrl" alt="@product.Name">
                         <h2>@product.Name</h2>
-                        <p class="price">@product.Price</p>
+                        @if (product.Quantity <= 0)
+                        {
+                            <p class="price">SOLD OUT</p>
+                        }
+                        else
+                        {
+                            <p class="price">R @product.Price</p>
+                        }
                         <div class="description">
-                        <p>@product.Description</p>
-                       </div>
+                            <p>@product.Description</p>
+                        </div>
                         <div class="button">
                             <input type="hidden" name="productID" value="@product.ProductID" />
-                            <button type="button" class="place-order-btn" data-product-id="@product.ProductID">Place Order</button>
+                            <button type="button" class="place-order-btn" data-product-id="@product.ProductID" data-product-quantity="@product.Quantity">Place Order</button>
                         </div>
                     </div>
-                </form>
-            }
-            
-        </div>
-    </div>
+                }
 
-        @* //------------------------------------------------------------------------------------------------------------- *@
-        @* Javascript - This is a pop up also known as a dialog box that will pop up  when place order is clicked*@
-        @* //------------------------------------------------------------------------------------------------------------- *@
+            </div>
+           } 
+        </div>
+        
+
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            // Get the modal and the confirm button
             // Get all the buttons that submit the form
             var btns = document.getElementsByClassName("place-order-btn");
 
@@ -202,21 +205,31 @@
             for (var i = 0; i < btns.length; i++) {
                 btns[i].onclick = function (event) {
                     event.preventDefault(); // Prevent the form from submitting
-                    // Show a confirmation dialog
-                    Swal.fire({
-                        title: 'Are you sure you want to place this order?',
-                        showDenyButton: true,
-                        confirmButtonText: `Yes`,
-                        denyButtonText: `No`,
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            this.form.submit(); // Submit the form
-                        }
-                    })
+                    var productQuantity = this.getAttribute("data-product-quantity");
+
+                    if (productQuantity <= 0) {
+                        // Show sold out notification
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'This product is sold out.',
+                        });
+                    } else {
+                        // Show a confirmation dialog
+                        Swal.fire({
+                            title: 'Are you sure you want to place this order?',
+                            showDenyButton: true,
+                            confirmButtonText: `Yes`,
+                            denyButtonText: `No`,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Submit the form
+                                this.form.submit();
+                            }
+                        });
+                    }
                 }
             }
         </script>
-        @* //------------------------------------------------------------------------------------------------------------- *@
-    </body>
+</body>
 </html>
