@@ -9,6 +9,13 @@ namespace POE_CloudDev
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSession( options => 
+               {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +29,8 @@ namespace POE_CloudDev
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -31,6 +40,9 @@ namespace POE_CloudDev
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
         }
+
+
     }
 }

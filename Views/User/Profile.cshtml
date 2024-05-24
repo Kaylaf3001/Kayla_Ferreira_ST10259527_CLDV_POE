@@ -1,0 +1,153 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Profile Page";
+    var ProfileDetails = ViewData["ProfileDetails"] as POE_CloudDev.ViewModels.UserProfileViewModel;
+    var transactions = ViewData["Transactions"] as List<POE_CloudDev.ViewModels.TransactionRecordViewModel>;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* CSS Page *@
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    <title>@ViewData["Title"]</title>
+    <style>
+        
+        body {
+            background-image: url("/Images/BackGround/ProfileBackGround.jpeg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .user-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .user-details h2 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+
+            .user-details p {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+
+        .order-history {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .order-history h2 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+
+        .card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex; 
+        }
+
+        .product-image  {
+            width: 200px; 
+            height: 200px; 
+            object-fit: cover;   
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-details {
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .card-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+    </style>
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
+</head>
+<body>
+
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    @* HTML Page *@
+    @* //------------------------------------------------------------------------------------------------------------- *@
+    <div class="container">
+        <h1><strong>Profile Page</strong></h1>
+        
+        <!-- User Details Section -->
+        <div class="user-details">
+            <h2>User Details</h2>
+            <p><strong>Name:</strong> @ProfileDetails.UserFirstName</p>
+            <p><strong>Surname:</strong> @ProfileDetails.UserLastName</p>
+            <p><strong>Email:</strong> @ProfileDetails.UserEmail</p>
+        </div>
+        <!-- Order History Section -->
+        <div class="order-history">
+            <h2>Order History</h2>
+            @foreach (var transaction in transactions)
+            {
+                <div class="card">
+                    <div class="card-content">
+                        <img class="product-image"src="@transaction.ImagePath" alt="@transaction.Name">
+                        <div class="card-details">
+                            <h3 class="card-title">@transaction.Name</h3>
+                            <p class="card-info"><strong>Product ID:</strong> @transaction.ProductID</p>
+                            <p class="card-info"><strong>Price:</strong> @transaction.Price</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @* //------------------------------------------------------------------------------------------------------------- *@
+
+</body>
+</html>
+

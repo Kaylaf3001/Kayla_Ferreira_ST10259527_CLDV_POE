@@ -1,6 +1,71 @@
 ﻿@{
     ViewData["Title"] = "ContactUs";
 }
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://adult.activatelearning.ac.uk/app/uploads/2022/03/artisans-working-with-ceramics-2021-09-24-03-59-47-utc-scaled.jpg'); /* Replace with your image URL */
+        background-size: cover;
+    }
+
+    .contact-container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .contact-left {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .contact-left h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+    .contact-right {
+        flex: 1;
+        background-color: rgba(40, 41, 41,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+    }
+
+        .contact-right h2 {
+            margin-bottom: 40px;
+        }
+
+        .contact-right ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+            .contact-right ul li {
+                margin-bottom: 10px;
+            }
+
+                .contact-right ul li strong {
+                    margin-right: 5px;
+                }
+
+    .footer {
+        background-color: rgba(23, 23, 23, 0.2);
+        text-align: center;
+        color: white;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,77 +96,4 @@
 </body>
 </html>
 
-<style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        background-image: url('https://adult.activatelearning.ac.uk/app/uploads/2022/03/artisans-working-with-ceramics-2021-09-24-03-59-47-utc-scaled.jpg'); /* Replace with your image URL */
-        background-size: cover;
-    }
-
-    .contact-container {
-        display: flex;
-        height: 100vh;
-    }
-
-    .contact-left {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-        
-        
-    }
-
-        .contact-left h1 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 36px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-    .contact-right {
-        flex: 1;
-        background-color: rgba(40, 41, 41,0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color:white;
-    }
-
-        .contact-right h2 {
-            margin-bottom: 40px;
-        }
-
-        .contact-right ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-
-            .contact-right ul li {
-                margin-bottom: 10px;
-            }
-
-                .contact-right ul li strong {
-                    margin-right: 5px;
-                }
-
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background-color: rgba(117, 116, 114, 0.2);
-        padding: 5px; 
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        color: white;
-    }
-</style>
 

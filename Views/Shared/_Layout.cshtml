@@ -8,10 +8,27 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/POE_CloudDev.styles.css" asp-append-version="true" />
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
         .navbar-nav .nav-item .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1); 
             border-radius: 5px; 
         }
+
+        .navbar-nav.flex-grow-1.justify-content-end {
+            margin-left: auto;
+        }
+
+        .footer {
+            background-color: rgba(23, 23, 23,0.2);
+            text-align: center;
+            color: white;
+        }
+
 
     </style>
 </head>
@@ -25,19 +42,33 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <ul class="navbar-nav flex-grow-1"
+                    <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AboutUs">AboutUs</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="ContactUs">ContactUs</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="MyWork">My Shop</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="MyWork">MyWork</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Profile">Profile</a>
                         </li>
+
+                        <ul class="navbar-nav flex-grow-1 justify-content-end">
+                            @if (ViewContext.RouteData.Values["controller"].ToString() == "Product" && ViewContext.RouteData.Values["action"].ToString() == "MyWork")
+                            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="AddProduct">Sell</a>
+                </li>
+                            }
+    </ul>
+                        
                     </ul>
                 </div>
             </div>
@@ -50,7 +81,7 @@
     </div>
 
     <footer class="border-top footer">
-        <div class="container">
+        <div class="footer">
             &copy; 2024 - KhumaloCraft Emporium - <a asp-area="" asp-controller="Home" asp-action="ContactUs">ContactUs</a>
         </div>
     </footer>

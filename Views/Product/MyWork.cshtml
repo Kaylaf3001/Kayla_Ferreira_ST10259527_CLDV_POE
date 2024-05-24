@@ -1,0 +1,251 @@
+﻿@model int  // We only need to pass userID to this view
+
+@{
+    ViewData["Title"] = "Home Page";
+    var userID = ViewData["userID"];
+    var products = ViewData["Products"] as List<POE_CloudDev.Models.ProductsTable>;
+    var categories = products.Select(p => p.Category).Distinct();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        h2 {
+            text-align: center;
+            color: black;
+            font-size: 20px;
+            font-family: "Times New Roman", Times, serif;
+            padding: 10px;
+        }
+
+        .category {
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            font-size: 30px;
+            background-color: #afc7de;
+            margin-top: 10px;
+            border-radius: 10px;
+            padding: 10px 0;
+        }
+
+        .card-container-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            margin: 0 40px;
+            overflow-x: hidden;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: 0 10px;
+            text-align: center;
+            font-family: arial;
+            border-radius: 8px;
+            flex: 0 0 auto;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .description {
+            height: 100px;
+        }
+
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+            .card button:hover {
+                opacity: 0.7;
+            }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #000;
+            text-decoration: none;
+            user-select: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Shop</h1>
+        <h2>A space to support local artists</h2>
+        @if (userID != null)
+        {
+            <h1>Welcome User: @userID</h1>
+        }
+        @foreach (var category in categories)
+        {
+            <div class="category">
+                @category
+            </div>
+            <div class="card-container-wrapper">
+                <a class="prev" onclick="scrollCards(-1, '@category')">&#10094;</a>
+                <div class="card-container" id="@category">
+                    @foreach (var product in products.Where(p => p.Category == category))
+                    {
+                        <div class="card">
+                            <img class="product-image" src="@product.ImageUrl" alt="@product.Name">
+                            <h2>@product.Name</h2>
+                            @if (product.Quantity <= 0)
+                            {
+                                <p class="price">SOLD OUT</p>
+                            }
+                            else
+                            {
+                                <p class="price">R @product.Price</p>
+                            }
+                            <div class="description">
+                                <p>@product.Description</p>
+                            </div>
+                            <div class="button">
+                                <input type="hidden" name="productID" value="@product.ProductID" />
+                                <button type="button" class="place-order-btn" data-product-id="@product.ProductID" data-product-quantity="@product.Quantity">Place Order</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <a class="next" onclick="scrollCards(1, '@category')">&#10095;</a>
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // When the user clicks on any button, show a confirmation dialog
+        document.addEventListener('DOMContentLoaded', function () {
+            var btns = document.getElementsByClassName("place-order-btn");
+
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the form from submitting
+                    var productQuantity = this.getAttribute("data-product-quantity");
+                    var productId = this.getAttribute("data-product-id");
+
+                    if (productQuantity <= 0) {
+                        // Show sold out notification
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'This product is sold out.',
+                        });
+                    } else {
+                        // Show a confirmation dialog
+                        Swal.fire({
+                            title: 'Are you sure you want to place this order?',
+                            showDenyButton: true,
+                            confirmButtonText: `Yes`,
+                            denyButtonText: `No`,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Process the order
+                                processOrder(productId);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        function scrollCards(direction, category) {
+            var container = document.getElementById(category);
+            var scrollAmount = 0;
+            var slideTimer = setInterval(function () {
+                container.scrollLeft += direction * 100;
+                scrollAmount += 10;
+                if (scrollAmount >= 100) {
+                    window.clearInterval(slideTimer);
+                }
+            }, 25);
+        }
+
+        function processOrder(productId) {
+            $.ajax({
+                url: '/Product/PlaceOrder', // Change this URL to the correct endpoint
+                type: 'POST',
+                data: { ProductId: productId },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Order Placed Successfully!',
+                            text: 'Thank you for your purchase.',
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'An error occurred while processing your order.',
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
