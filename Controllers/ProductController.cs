@@ -46,16 +46,16 @@ namespace POE_CloudDev.Controllers
             int UserId = HttpContext.Session.GetInt32("CurrentUserId") ?? 0;
             if (UserId == 0)
             {
-                return RedirectToAction("Login", "User");
+                return Json(new { success = false, message = "User is not logged in." });
             }
             try
             {
                 bool isOrderPlaced = ProductsTable.PlaceOrder(UserId, ProductId);
-                return RedirectToAction("MyWork", "Product");
+                return Json(new { success = isOrderPlaced });
             }
             catch (Exception ex)
             {
-                return View("Error");
+                return Json(new { success = false, message = ex.Message });
             }
         }
         //-------------------------------------------------------------------------------------------------------------

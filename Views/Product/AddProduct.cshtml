@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <title>Add A Product</title>
-    @* //------------------------------------------------------------------------------------------------------------- *@
-    @* CSS Page *@
-    @* //------------------------------------------------------------------------------------------------------------- *@
+    <!-- CSS Page -->
     <style>
         body {
             background-image: url("/Images/BackGround/BackImg2.png");
@@ -104,13 +104,7 @@
                 width: 100%;
                 height: auto; /* Allow the image to resize proportionally within the container */
             }
-
-
     </style>
-
-    @* //------------------------------------------------------------------------------------------------------------- *@
-    @* HTML - User input boxes for the item to be sold*@
-    @* //------------------------------------------------------------------------------------------------------------- *@
 </head>
 <body>
     <div class="container">
@@ -122,13 +116,13 @@
             <textarea name="Description" placeholder="Description" required></textarea>
             <select name="category" required>
                 <option value="">Select a category</option>
-                <option value="ring">Ring</option>
-                <option value="baskets">Baskets</option>
-                <option value="ceramics">Ceramics</option>
-                <option value="bags">Bags</option>
-                <option value="necklace">Necklaces</option>
+                <option value="Rings">Ring</option>
+                <option value="Baskets">Baskets</option>
+                <option value="Ceramics">Ceramics</option>
+                <option value="Bags">Bags</option>
+                <option value="Necklaces">Necklaces</option>
                 <option value="Watches">Watches</option>
-                <option value="bracelets">Bracelets</option>
+                <option value="Bracelets">Bracelets</option>
             </select>
             <input type="file" name="Image" required onchange="previewImage(event)">
             <div class="image-preview" id="imagePreview">
@@ -140,9 +134,9 @@
         </form>
     </div>
 
-    @* //------------------------------------------------------------------------------------------------------------- *@
-    @* Preview of image*@
-    @* //------------------------------------------------------------------------------------------------------------- *@
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- Preview of image -->
     <script>
         function previewImage(event) {
             var reader = new FileReader();
@@ -153,7 +147,23 @@
             }
             reader.readAsDataURL(event.target.files[0]);
         }
+
+        document.getElementById('productForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Simulate successful submission (replace with actual AJAX request if needed)
+            setTimeout(function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Product Added Successfully!',
+                    text: 'Your product has been added to the catalog.',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('productForm').submit(); // Proceed with form submission
+                    }
+                });
+            }, 500); // Simulate delay for demonstration
+        });
     </script>
-    @* //------------------------------------------------------------------------------------------------------------- *@
 </body>
 </html>

@@ -68,7 +68,7 @@ namespace POE_CloudDev.Models
             if (image != null)
             {
                 string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images/ImgObj");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                uniqueFileName = Guid.NewGuid().ToString();
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
