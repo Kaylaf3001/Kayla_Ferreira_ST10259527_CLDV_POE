@@ -171,7 +171,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // When the user clicks on any button, show a confirmation dialog
         document.addEventListener('DOMContentLoaded', function () {
             var btns = document.getElementsByClassName("place-order-btn");
 
@@ -189,14 +188,29 @@
                             text: 'This product is sold out.',
                         });
                     } else {
-                        // Show a confirmation dialog
+                        // Ask for card details
                         Swal.fire({
-                            title: 'Are you sure you want to place this order?',
-                            showDenyButton: true,
-                            confirmButtonText: `Yes`,
-                            denyButtonText: `No`,
+                            title: 'Please enter your card details',
+                            html:
+                                '<input id="swal-input1" class="swal2-input" placeholder="Card number">' +
+                                '<input id="swal-input2" class="swal2-input" placeholder="Expiry date (MM/YY)">' +
+                                '<input id="swal-input3" class="swal2-input" placeholder="CVV">',
+                            focusConfirm: false,
+                            preConfirm: () => {
+                                return [
+                                    document.getElementById('swal-input1').value,
+                                    document.getElementById('swal-input2').value,
+                                    document.getElementById('swal-input3').value
+                                ];
+                            }
                         }).then((result) => {
                             if (result.isConfirmed) {
+                                var cardNumber = result.value[0];
+                                var expiryDate = result.value[1];
+                                var cvv = result.value[2];
+
+                                // Here, you can validate the card details and proceed with the order if they are valid
+                                // For demonstration purposes, let's assume the card details are valid
                                 // Process the order
                                 processOrder(productId);
                             }
@@ -205,17 +219,6 @@
                 });
             }
         });
-        function scrollCards(direction, category) {
-            var container = document.getElementById(category);
-            var scrollAmount = 0;
-            var slideTimer = setInterval(function () {
-                container.scrollLeft += direction * 100;
-                scrollAmount += 10;
-                if (scrollAmount >= 100) {
-                    window.clearInterval(slideTimer);
-                }
-            }, 25);
-        }
 
         function processOrder(productId) {
             $.ajax({
