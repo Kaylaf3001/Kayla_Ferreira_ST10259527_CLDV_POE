@@ -64,15 +64,43 @@ namespace POE_CloudDev.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
-            
+
             List<TransactionRecordViewModel> transactions = TransactionsModel.UserTransactions((int)userID);
             UserProfileViewModel ProfileDetails = usrtbl.getUserDetails((int)userID);
             ViewData["ProfileDetails"] = ProfileDetails;
             ViewData["Transactions"] = transactions;
-            
-            return View();
+
+            return View(userID); // Pass userID as the model
         }
         //-------------------------------------------------------------------------------------------------------------
+        [HttpPost]
+        public ActionResult UpdateProfile(int UserId, string Name, string Surname, string Email)
+        {
+            userTable user = new userTable
+            {
+                Name = Name,
+                Surname = Surname,
+                Email = Email
+            };
+            var result = usrtbl.update_UserDetails(UserId, user);
+            if (result > 0)
+            {
+                // Update successful
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                // Handle update failure
+                return View("Error");
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear(); // Clear the session
+            return RedirectToAction("Index", "Home"); // Redirect to the home page or login page as appropriate
+        }
     }
 }
 

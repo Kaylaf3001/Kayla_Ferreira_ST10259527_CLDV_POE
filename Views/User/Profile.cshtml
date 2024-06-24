@@ -11,13 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    @* //------------------------------------------------------------------------------------------------------------- *@
-    @* CSS Page *@
-    @* //------------------------------------------------------------------------------------------------------------- *@
     <title>@ViewData["Title"]</title>
     <style>
-        
+        /* General Styles */
         body {
             background-image: url("/Images/BackGround/ProfileBackGround.jpeg");
             background-repeat: no-repeat;
@@ -41,14 +37,15 @@
             margin-bottom: 30px;
         }
 
-        .user-details {
+        .user-details, .user-details-form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-            .user-details h2 {
+            .user-details h2, .user-details-form h2 {
                 margin-top: 0;
                 margin-bottom: 20px;
                 font-size: 24px;
@@ -59,10 +56,17 @@
                 font-size: 16px;
             }
 
+            .user-details-form input {
+                margin: 10px 0;
+                font-size: 16px;
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
         .order-history {
             background-color: #fff;
             padding: 20px;
-            margin-top: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -79,13 +83,13 @@
             margin-bottom: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex; 
+            display: flex;
         }
 
-        .product-image  {
-            width: 200px; 
-            height: 200px; 
-            object-fit: cover;   
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
             border-radius: 8px;
             margin-right: 20px;
         }
@@ -109,25 +113,58 @@
             color: #666;
         }
 
-    </style>
-    @* //------------------------------------------------------------------------------------------------------------- *@
+        .edit-button, .save-button, .cancel-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
+            .edit-button:hover, .save-button:hover, .cancel-button:hover {
+                background-color: #0056b3;
+            }
+
+        .cancel-button {
+            background-color: #dc3545;
+        }
+
+            .cancel-button:hover {
+                background-color: #c82333;
+            }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-
-    @* //------------------------------------------------------------------------------------------------------------- *@
-    @* HTML Page *@
-    @* //------------------------------------------------------------------------------------------------------------- *@
     <div class="container">
         <h1><strong>Profile Page</strong></h1>
-        
+
         <!-- User Details Section -->
         <div class="user-details">
             <h2>User Details</h2>
-            <p><strong>Name:</strong> @ProfileDetails.UserFirstName</p>
-            <p><strong>Surname:</strong> @ProfileDetails.UserLastName</p>
-            <p><strong>Email:</strong> @ProfileDetails.UserEmail</p>
+            <div id="display-mode">
+                <p><strong>Name:</strong> @ProfileDetails.UserFirstName</p>
+                <p><strong>Surname:</strong> @ProfileDetails.UserLastName</p>
+                <p><strong>Email:</strong> @ProfileDetails.UserEmail</p>
+                <button class="edit-button" onclick="toggleEdit(true)">Edit</button>
+            </div>
+            <div id="edit-mode" class="hidden">
+                <form asp-action="UpdateProfile" method="post">
+                    <input type="hidden" name="UserId" value="@Model" />
+                    <input type="text" name="Name" placeholder="Name" value="@ProfileDetails.UserFirstName" required />
+                    <input type="text" name="Surname" placeholder="Surname" value="@ProfileDetails.UserLastName" required />
+                    <input type="email" name="Email" placeholder="Email" value="@ProfileDetails.UserEmail" required />
+                    <button type="submit" class="save-button">Save</button>
+                    <button type="button" class="cancel-button" onclick="toggleEdit(false)">Cancel</button>
+                </form>
+            </div>
         </div>
+
         <!-- Order History Section -->
         <div class="order-history">
             <h2>Order History</h2>
@@ -135,7 +172,7 @@
             {
                 <div class="card">
                     <div class="card-content">
-                        <img class="product-image"src="@transaction.ImagePath" alt="@transaction.Name">
+                        <img class="product-image" src="@transaction.ImagePath" alt="@transaction.Name">
                         <div class="card-details">
                             <h3 class="card-title">@transaction.Name</h3>
                             <p class="card-info"><strong>Product ID:</strong> @transaction.ProductID</p>
@@ -146,8 +183,19 @@
             }
         </div>
     </div>
-    @* //------------------------------------------------------------------------------------------------------------- *@
 
+    <script>
+        function toggleEdit(editMode) {
+            var displayMode = document.getElementById("display-mode");
+            var editModeDiv = document.getElementById("edit-mode");
+            if (editMode) {
+                displayMode.classList.add("hidden");
+                editModeDiv.classList.remove("hidden");
+            } else {
+                displayMode.classList.remove("hidden");
+                editModeDiv.classList.add("hidden");
+            }
+        }
+    </script>
 </body>
 </html>
-

@@ -71,6 +71,34 @@ namespace POE_CloudDev.Models
             }
         }
         //-------------------------------------------------------------------------------------------------------------
+        public int update_UserDetails(int userId, userTable user)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(con_string))
+                {
+                    string sql = "UPDATE USERS SET UserFirstName = @Name, UserLastName = @Surname, UserEmail = @Email WHERE UserId = @UserId";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", user.Name);
+                        cmd.Parameters.AddWithValue("@Surname", user.Surname);
+                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+
+                        con.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging
+                Console.WriteLine($"Error updating user details: {ex.Message}");
+                throw;
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------
     }
 }
 
